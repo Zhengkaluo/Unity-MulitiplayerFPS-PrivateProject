@@ -4,8 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : MonoBehaviour
 {
+    [SerializeField]
+    private Camera PlayerCamera;
     private Vector3 Velocity = Vector3.zero;
-
+    private Vector3 Rotation = Vector3.zero;
+    private Vector3 CamearRotation = Vector3.zero;
     private Rigidbody PlayerRigidBody;
 
     private void Start()
@@ -19,10 +22,18 @@ public class PlayerMotor : MonoBehaviour
     {
         Velocity = _Velocity;
     }
-    //
+    public void Rotate(Vector3 _Rotate)
+    {
+        Rotation = _Rotate;
+    }
+    public void RotateCamera(Vector3 _CameraRotation)
+    {
+        CamearRotation = _CameraRotation;
+    }
     private void FixedUpdate()
     {
-        PerformMovement();  
+        PerformRotation();
+        PerformMovement();
     }
     //PerformMovement based on Velocity variable
     void PerformMovement()
@@ -32,5 +43,15 @@ public class PlayerMotor : MonoBehaviour
             PlayerRigidBody.MovePosition(PlayerRigidBody.position + Velocity * Time.fixedDeltaTime);
         }
     }
+    void PerformRotation()
+    {
+        PlayerRigidBody.MoveRotation(PlayerRigidBody.rotation * Quaternion.Euler(Rotation));//use quaternion
+        if(PlayerCamera != null)
+        {
+            PlayerCamera.transform.Rotate(-CamearRotation);
+        }
+    }
 
+
+   
 }
