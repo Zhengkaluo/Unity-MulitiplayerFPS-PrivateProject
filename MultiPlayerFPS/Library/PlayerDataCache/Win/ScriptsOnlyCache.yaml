@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - PlayerMotor
     - PlayerSetUp
+    - PlayerShoot
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.Graphs.dll:
@@ -16,6 +17,11 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    com.unity.multiplayer-hlapi.Editor.dll:
+    - UnityEditor.NetworkBehaviourInspector
+    - UnityEditor.NetworkIdentityEditor
+    - UnityEditor.NetworkTransformChildEditor
+    - UnityEditor.NetworkTransformEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -59,9 +65,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1474}
     - Class: 114
-      Script: {instanceID: 1522}
+      Script: {instanceID: 1952}
     - Class: 114
-      Script: {instanceID: 1954}
+      Script: {instanceID: 2010}
     - Class: 114
       Script: {instanceID: 2204}
     - Class: 114
@@ -69,14 +75,18 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2638}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3024}
     - Class: 114
-      Script: {instanceID: 4094}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 16190}
+      Script: {instanceID: 4096}
+    - Class: 114
+      Script: {instanceID: 16398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 153
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -91,10 +101,10 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: eafb77726b67b7571818a7210a3ce11e
+      Hash: ad9173d3a69d99153f38ed4b62226129
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
-    className: NetworkIdentity
+    className: NetworkTransform
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -131,12 +141,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Cameras
     className: AutoCam
-  - hash:
-      serializedVersion: 2
-      Hash: ad9173d3a69d99153f38ed4b62226129
-    assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
-    namespaceName: UnityEngine.Networking
-    className: NetworkTransform
   - hash:
       serializedVersion: 2
       Hash: 0334c4a0effc471453cf665c58f76aff
@@ -325,7 +329,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: c7cab9b385240e816194df3214887be2
+      Hash: 2388e9955b605e0f95f95acc7a9005cd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMotor
@@ -359,6 +363,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayModeRunnerCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 1a0cc8519ee18a25c0dbd1f019ffd3f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerSetUp
   - hash:
       serializedVersion: 2
       Hash: 22c018dd8fa228e66d586ea6215449b3
@@ -769,6 +779,12 @@ ScriptsOnlyBuild:
     className: PlanarReflection
   - hash:
       serializedVersion: 2
+      Hash: eafb77726b67b7571818a7210a3ce11e
+    assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
+    namespaceName: UnityEngine.Networking
+    className: NetworkIdentity
+  - hash:
+      serializedVersion: 2
       Hash: dc0c855440d59a516315a62ef55d7fd8
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets._2D
@@ -835,7 +851,7 @@ ScriptsOnlyBuild:
     className: CarUserControl
   - hash:
       serializedVersion: 2
-      Hash: 41911e0c837e31824d5e25992a25944b
+      Hash: e356a6f5e5c31df3be32f0d31a60c82c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -1159,10 +1175,10 @@ ScriptsOnlyBuild:
     className: SimpleActivatorMenu
   - hash:
       serializedVersion: 2
-      Hash: 0aae8ba6d1d519ae3ab4393668522e34
+      Hash: ea79979ec2b9f5c96f8219cf65d57de4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PlayerSetUp
+    className: PlayerShoot
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainLevel01.unity
