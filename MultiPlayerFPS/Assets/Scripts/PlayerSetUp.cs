@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(Player))]
 public class PlayerSetUp : NetworkBehaviour //No monobehaviour
 {
     [SerializeField]
@@ -27,13 +28,19 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
                 SceneCamera.gameObject.SetActive(false);
             }
         }
-        RegisterPlayer();
+        //RegisterPlayer(); game manager takes care of it
+
+
         
     }
-    void RegisterPlayer()
+
+    public override void OnStartClient()
     {
-        string _ID = "Player " + GetComponent<NetworkIdentity>().netId;
-        transform.name = _ID;
+        base.OnStartClient();
+
+        string _NetID = GetComponent<NetworkIdentity>().netId.ToString();
+        Player _Player = GetComponent<Player>();
+        GameManager.RegisterPlayer(_NetID, _Player);
     }
     void AssignRemoteLayer()//assgin layer to players who are not local
     {
@@ -53,5 +60,8 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
         {
             SceneCamera.gameObject.SetActive(true);
         }
+
+        //deregisger player when die are killed / or disconnect?
+        GameManager.UnRegisterPlayer(transform.name);
     }
 }

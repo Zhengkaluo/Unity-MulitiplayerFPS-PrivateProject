@@ -40,7 +40,7 @@ public class PlayerShoot : NetworkBehaviour
         {
             if(_Hit.collider.tag == PLAYER_TAG)
             {
-                CmdPlayerShot(_Hit.collider.name);
+                CmdPlayerShot(_Hit.collider.name, Weapon.Damage);
             }
             Debug.Log("WE hit " + _Hit.collider.name);
             //we hit something
@@ -48,9 +48,12 @@ public class PlayerShoot : NetworkBehaviour
     }
 
     [Command]//method called only on server
-    void CmdPlayerShot(string _ID)
+    void CmdPlayerShot(string _PlayerID, int _DamageAmount)
     {
-        Debug.Log(_ID + "has been shot. ");
+        Debug.Log(_PlayerID + "has been shot. ");
+
+        Player _Player = GameManager.GetPlayer(_PlayerID);
+        _Player.TakeDamage(_DamageAmount);
 
         //Destroy(GameObject.Find(_ID));
     }

@@ -6,6 +6,6 @@ public class PlayerWeapon
     // Start is called before the first frame update
     public string Name = "Normal gun";
 
-    public float Damage = 10f;
+    public int Damage = 10;
     public float Range = 200f;
 }

@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - GameManager
+    - Player
     - PlayerController
     - PlayerMotor
     - PlayerSetUp
@@ -17,11 +19,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    com.unity.multiplayer-hlapi.Editor.dll:
-    - UnityEditor.NetworkBehaviourInspector
-    - UnityEditor.NetworkIdentityEditor
-    - UnityEditor.NetworkTransformChildEditor
-    - UnityEditor.NetworkTransformEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -63,25 +60,29 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1474}
+      Script: {instanceID: 1520}
     - Class: 114
-      Script: {instanceID: 1952}
+      Script: {instanceID: 1954}
     - Class: 114
-      Script: {instanceID: 2010}
+      Script: {instanceID: 2012}
     - Class: 114
-      Script: {instanceID: 2204}
+      Script: {instanceID: 2118}
     - Class: 114
-      Script: {instanceID: 2598}
+      Script: {instanceID: 2208}
     - Class: 114
-      Script: {instanceID: 2638}
+      Script: {instanceID: 2602}
     - Class: 114
-      Script: {instanceID: 3024}
+      Script: {instanceID: 2642}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3028}
     - Class: 114
-      Script: {instanceID: 4096}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 16398}
+      Script: {instanceID: 4100}
+    - Class: 114
+      Script: {instanceID: 16414}
+    - Class: 114
+      Script: {instanceID: 16832}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -99,12 +100,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: EventTrigger
-  - hash:
-      serializedVersion: 2
-      Hash: ad9173d3a69d99153f38ed4b62226129
-    assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
-    namespaceName: UnityEngine.Networking
-    className: NetworkTransform
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -141,6 +136,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Cameras
     className: AutoCam
+  - hash:
+      serializedVersion: 2
+      Hash: ad9173d3a69d99153f38ed4b62226129
+    assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
+    namespaceName: UnityEngine.Networking
+    className: NetworkTransform
   - hash:
       serializedVersion: 2
       Hash: 0334c4a0effc471453cf665c58f76aff
@@ -405,6 +406,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
     className: AeroplaneAiControl
+  - hash:
+      serializedVersion: 2
+      Hash: e18371c9d86d272e61dcdcc9b47407f1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerShoot
   - hash:
       serializedVersion: 2
       Hash: 3748fbad2d474a315bda516b8363a0c5
@@ -1175,10 +1182,16 @@ ScriptsOnlyBuild:
     className: SimpleActivatorMenu
   - hash:
       serializedVersion: 2
-      Hash: ea79979ec2b9f5c96f8219cf65d57de4
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PlayerShoot
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 9b754f4d56082b7e20f97b21092a96e5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Player
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainLevel01.unity
