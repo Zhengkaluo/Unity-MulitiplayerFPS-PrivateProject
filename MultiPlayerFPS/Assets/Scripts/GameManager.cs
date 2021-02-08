@@ -3,6 +3,22 @@ using UnityEngine;
 using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    public MatchSettings ThisMatchSettings;
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.LogError("More than one game manager in scene");
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #region Player tracking
     private const string PLAYER_ID_PREFIX = "Player ";
 
     private static Dictionary<string, Player> PlayersDictionary = new Dictionary<string, Player>();
@@ -37,4 +53,6 @@ public class GameManager : MonoBehaviour
     //    GUILayout.EndVertical();
     //    GUILayout.EndArea();
     //}
+    #endregion
+
 }

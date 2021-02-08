@@ -29,7 +29,9 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
             }
         }
         //RegisterPlayer(); game manager takes care of it
-
+        
+        //player class set up
+        GetComponent<Player>().Setup();
 
         
     }

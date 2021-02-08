@@ -466,12 +466,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weapon:
     Name: Normal gun
-    Damage: 10
+    Damage: 40
     Range: 200
   PlayerCamera: {fileID: 3461438450420515724}
   Mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
 --- !u!114 &-928898527789872613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +484,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087e1b54cd7a4fc4d8fd2ed3337babb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 100
+  DisableOnDeath:
+  - {fileID: 3461438449522265142}
+  - {fileID: 2193700990947898358}
 --- !u!1 &3461438449874203049
 GameObject:
   m_ObjectHideFlags: 0
