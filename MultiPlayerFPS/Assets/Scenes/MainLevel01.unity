@@ -659,6 +659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b54f65bebaecf643854b945b2c5ecd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisMatchSettings:
+    RespawnWaitTime: 5
 --- !u!4 &1353870241
 Transform:
   m_ObjectHideFlags: 0
@@ -763,7 +765,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 3461438449522265137, guid: 718f5ffc187d54b47abebffc8352b472, type: 3}
+  m_PlayerPrefab: {fileID: 7437296000263013728, guid: aefdd211ee960d24885c172e01e7b166, type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: 
