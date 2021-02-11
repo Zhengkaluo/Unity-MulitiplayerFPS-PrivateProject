@@ -12,8 +12,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -53,7 +55,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -70,19 +78,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2208}
     - Class: 114
-      Script: {instanceID: 2602}
+      Script: {instanceID: 2604}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2644}
     - Class: 114
-      Script: {instanceID: 2722}
+      Script: {instanceID: 2724}
     - Class: 114
-      Script: {instanceID: 3030}
+      Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3224}
+      Script: {instanceID: 3226}
     - Class: 114
-      Script: {instanceID: 4102}
+      Script: {instanceID: 4104}
     - Class: 114
-      Script: {instanceID: 4146}
+      Script: {instanceID: 4148}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -864,7 +872,7 @@ ScriptsOnlyBuild:
     className: CarUserControl
   - hash:
       serializedVersion: 2
-      Hash: e356a6f5e5c31df3be32f0d31a60c82c
+      Hash: 9a67cac9c6d96993b4463494542a6ab1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController

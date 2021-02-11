@@ -1,4 +1,5 @@
 using UnityEngine;
+
 [RequireComponent(typeof(ConfigurableJoint))]
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float ThrusterForce = 1000f;
+
+    [SerializeField]
+    private Animator ThrusterAnimator;
 
     [Header("Spring Settings: ")]
     //[SerializeField]
@@ -35,14 +39,24 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Calculate movement velocity as a 3d Vector 
-        float _xMove = Input.GetAxisRaw("Horizontal");//GetAxis will be differenet and 'slower'
-        float _zMove = Input.GetAxisRaw("Vertical");
+        float _xMove = Input.GetAxis("Horizontal");//GetAxis will be differenet and 'slower'
+        float _zMove = Input.GetAxis("Vertical");
 
         Vector3 _MoveHorizontal = transform.right * _xMove; //1,0,0 
         Vector3 _MoveVertical = transform.forward * _zMove; //0,0,1
 
         //final Movement Vector
-        Vector3 _Velocity = (_MoveHorizontal + _MoveVertical).normalized * speed;
+        Vector3 _Velocity = (_MoveHorizontal + _MoveVertical) * speed;
+
+        //Animate Movement
+        if(ThrusterAnimator == null)
+        {
+            Debug.Log("No Thruster Animator found!");
+        }
+        else
+        {
+            ThrusterAnimator.SetFloat("ForwardVelocity", _zMove);
+        }
         //apply movement
         Motor.Move(_Velocity);
 
