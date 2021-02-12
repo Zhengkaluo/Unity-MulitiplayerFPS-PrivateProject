@@ -4928,7 +4928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318264768906664362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.293}
+  m_LocalPosition: {x: 0, y: -0.026, z: 0.147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1318264769869677502}
@@ -4966,7 +4966,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5398,6 +5398,9 @@ MonoBehaviour:
   - {fileID: 4337954152429038035}
   - {fileID: 7696397796054120166}
   RemoteLayerName: RemotePlayer
+  DontDrawLayerName: DontDraw
+  PlayerGraphics: {fileID: 1318264769778669033}
+  PlayerUIPrefab: {fileID: 4494772795052158283, guid: f27a96f06298608459ae5a4d488485f4, type: 3}
 --- !u!114 &6856340179448102912
 MonoBehaviour:
   m_ObjectHideFlags: 0

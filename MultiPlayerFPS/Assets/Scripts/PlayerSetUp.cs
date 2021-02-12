@@ -11,6 +11,15 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
     [SerializeField]
     string RemoteLayerName = "RemotePlayer";
 
+    [SerializeField]
+    string DontDrawLayerName = "DontRraw";
+    [SerializeField]
+    GameObject PlayerGraphics;
+
+    [SerializeField]
+    GameObject PlayerUIPrefab;
+    private GameObject PlayerUIInstance;
+
     Camera SceneCamera;
     void Start()
     {
@@ -27,13 +36,28 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
             {
                 SceneCamera.gameObject.SetActive(false);
             }
+            //Disable Player Graphics For Local Player so not blocking camera
+            SetLayerRecursively(PlayerGraphics, LayerMask.NameToLayer(DontDrawLayerName));
+
+            //Create PlayerUI
+            PlayerUIInstance = Instantiate(PlayerUIPrefab);
+            PlayerUIInstance.name = PlayerUIPrefab.name;
         }
+
+
         //RegisterPlayer(); game manager takes care of it
-        
+
         //player class set up
         GetComponent<Player>().Setup();
-
-        
+   
+    }
+    void SetLayerRecursively(GameObject Obj, int NewLayer)
+    {
+        Obj.layer = NewLayer;
+        foreach(Transform child in Obj.transform)//recursively on child 
+        {
+            SetLayerRecursively(child.gameObject, NewLayer);
+        }
     }
 
     public override void OnStartClient()
@@ -57,6 +81,8 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
     }
     private void OnDisable()
     {
+        //Destroy PlayerUI
+        Destroy(PlayerUIInstance);
         //when this object die, set back scene camear back
         if(SceneCamera != null)
         {
