@@ -5,8 +5,13 @@ using UnityEngine.Networking;
 public class PlayerShoot : NetworkBehaviour
 {
     private const string PLAYER_TAG = "Player";
-    public PlayerWeapon Weapon;
-
+    
+    [SerializeField]
+    private PlayerWeapon Weapon;
+    [SerializeField]
+    private GameObject WeaponGraphics;
+    [SerializeField]
+    private const string WeaponLayerName = "Weapon";
     //refer to camear
     [SerializeField]
     private Camera PlayerCamera;
@@ -20,6 +25,8 @@ public class PlayerShoot : NetworkBehaviour
             Debug.LogError("Playershoot: player camear not found!");
             this.enabled = false;
         }
+
+        WeaponGraphics.layer = LayerMask.NameToLayer(WeaponLayerName);
 
     }
     private void Update()
