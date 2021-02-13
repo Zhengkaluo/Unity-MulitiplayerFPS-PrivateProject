@@ -2,22 +2,23 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : NetworkBehaviour
 {
     private const string PLAYER_TAG = "Player";
+
+    //[SerializeField]
+    //private GameObject WeaponGraphics;
     
-    [SerializeField]
-    private PlayerWeapon Weapon;
-    [SerializeField]
-    private GameObject WeaponGraphics;
-    [SerializeField]
-    private const string WeaponLayerName = "Weapon";
     //refer to camear
     [SerializeField]
     private Camera PlayerCamera;
 
     [SerializeField]
     private LayerMask Mask;
+
+    private PlayerWeapon CurrentWeapon;
+    private WeaponManager PlayerWeaponManager;
     private void Start()
     {
         if (PlayerCamera == null)
@@ -25,17 +26,32 @@ public class PlayerShoot : NetworkBehaviour
             Debug.LogError("Playershoot: player camear not found!");
             this.enabled = false;
         }
-
-        WeaponGraphics.layer = LayerMask.NameToLayer(WeaponLayerName);
+        PlayerWeaponManager = GetComponent<WeaponManager>();
+        //WeaponGraphics.layer = LayerMask.NameToLayer(WeaponLayerName);
 
     }
     private void Update()
     {
-        
-        if (Input.GetButtonDown("Fire1"))
+        CurrentWeapon = PlayerWeaponManager.GetCurrentWeapon();
+        if (CurrentWeapon.FireRate <= 0)
         {
-            Shoot();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
         }
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                InvokeRepeating("Shoot", 0f, 1f / CurrentWeapon.FireRate);
+                //Shoot();
+            }
+            else if (Input.GetButtonUp("Fire1")){
+                CancelInvoke("Shoot");
+            }
+        }
+        
     }
 
     [Client]
@@ -43,11 +59,11 @@ public class PlayerShoot : NetworkBehaviour
     {
         RaycastHit _Hit;
         Debug.Log("You shoot");
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out _Hit, Weapon.Range, Mask))//position, direction, hit information stored, range, layermask
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out _Hit, CurrentWeapon.Range, Mask))//position, direction, hit information stored, range, layermask
         {
             if(_Hit.collider.tag == PLAYER_TAG)
             {
-                CmdPlayerShot(_Hit.collider.name, Weapon.Damage);
+                CmdPlayerShot(_Hit.collider.name, CurrentWeapon.Damage);
             }
             Debug.Log("WE hit " + _Hit.collider.name);
             //we hit something

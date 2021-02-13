@@ -8,4 +8,10 @@ public class PlayerWeapon
 
     public int Damage = 10;
     public float Range = 200f;
+
+    public float FireRate = 0f;//rapid fire
+
+    public GameObject Graphics;
+
+
 }
