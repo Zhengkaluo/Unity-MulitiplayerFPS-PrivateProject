@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - PlayerMotor
     - PlayerSetUp
     - PlayerShoot
+    - WeaponGraphics
     - WeaponManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -91,27 +92,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2210}
     - Class: 114
-      Script: {instanceID: 2606}
+      Script: {instanceID: 2464}
     - Class: 114
-      Script: {instanceID: 2646}
+      Script: {instanceID: 2608}
     - Class: 114
-      Script: {instanceID: 2726}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2728}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 2884}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3034}
     - Class: 114
-      Script: {instanceID: 3432}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 3816}
+      Script: {instanceID: 3434}
     - Class: 114
-      Script: {instanceID: 4104}
+      Script: {instanceID: 3818}
     - Class: 114
-      Script: {instanceID: 4148}
+      Script: {instanceID: 4106}
     - Class: 114
-      Script: {instanceID: 19806}
+      Script: {instanceID: 4150}
+    - Class: 114
+      Script: {instanceID: 19940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -597,6 +600,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SceneAndURLLoader
+  - hash:
+      serializedVersion: 2
+      Hash: f157b1c2718b615390846875cc677bcb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WeaponManager
   - hash:
       serializedVersion: 2
       Hash: 3f0b469d844365c00a63de0437c9b29e
@@ -1235,10 +1244,10 @@ ScriptsOnlyBuild:
     className: SimpleActivatorMenu
   - hash:
       serializedVersion: 2
-      Hash: f157b1c2718b615390846875cc677bcb
+      Hash: ed8d2c80e3241503b6190497277dfe15
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: WeaponManager
+    className: WeaponGraphics
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainLevel01.unity

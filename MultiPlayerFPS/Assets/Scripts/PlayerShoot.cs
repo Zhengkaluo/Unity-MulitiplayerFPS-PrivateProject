@@ -18,12 +18,13 @@ public class PlayerShoot : NetworkBehaviour
     private LayerMask Mask;
 
     private PlayerWeapon CurrentWeapon;
+    //private 
     private WeaponManager PlayerWeaponManager;
     private void Start()
     {
         if (PlayerCamera == null)
         {
-            Debug.LogError("Playershoot: player camear not found!");
+            Debug.LogError("Playershoot: player camera not found!");
             this.enabled = false;
         }
         PlayerWeaponManager = GetComponent<WeaponManager>();
@@ -53,10 +54,39 @@ public class PlayerShoot : NetworkBehaviour
         }
         
     }
-
+    //when player shoots
+    [Command]
+    void CmdShoot()
+    {
+        RpcDoShootEffect();
+    }
+    //all clients call becuase effects are shown on all screens
+    [ClientRpc]
+    void RpcDoShootEffect()//display muzzle flash on all sever;
+    {
+        PlayerWeaponManager.GetCurrentGraphics().MuzzleFlash.Play();
+    }
+    [Command]
+    void CmdOnHit(Vector3 _Pos, Vector3 _Normal)
+    {
+        RpcDoHitEffect(_Pos, _Normal);
+    }
+    [ClientRpc]
+    void RpcDoHitEffect(Vector3 _Pos, Vector3 _Normal)//display muzzle flash on all sever;
+    {
+        GameObject _HitEffect = (GameObject)Instantiate(PlayerWeaponManager.GetCurrentGraphics().HitEffect, _Pos, Quaternion.LookRotation(_Normal));
+        Destroy(_HitEffect, 1f);
+        //PlayerWeaponManager.GetCurrentGraphics().HitEffect.Play();
+    }
     [Client]
     void Shoot()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        //shooting, call On shoot Method on server
+        CmdShoot();
         RaycastHit _Hit;
         Debug.Log("You shoot");
         if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out _Hit, CurrentWeapon.Range, Mask))//position, direction, hit information stored, range, layermask
@@ -65,6 +95,7 @@ public class PlayerShoot : NetworkBehaviour
             {
                 CmdPlayerShot(_Hit.collider.name, CurrentWeapon.Damage);
             }
+            CmdOnHit(_Hit.point, _Hit.normal);
             Debug.Log("WE hit " + _Hit.collider.name);
             //we hit something
         }
