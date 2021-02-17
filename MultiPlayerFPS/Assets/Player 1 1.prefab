@@ -220,7 +220,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 1271
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -374,7 +374,12 @@ MonoBehaviour:
   speed: 5
   LookSensitivity: 20
   ThrusterForce: 1300
+  ThrusterFuelBrunSpeed: 1
+  ThrusterFuelRegendSpeed: 0.3
   ThrusterAnimator: {fileID: 7696397796054120166}
+  EnvironmentMask:
+    serializedVersion: 2
+    m_Bits: 1024
   JointSpring: 20
   JointMaxForce: 40
 --- !u!114 &1101825081771566317
@@ -586,7 +591,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 1318264768906664361}
   Mask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 1207
 --- !u!114 &5861987458892828734
 MonoBehaviour:
   m_ObjectHideFlags: 0
