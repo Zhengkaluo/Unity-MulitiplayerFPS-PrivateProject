@@ -31,12 +31,36 @@ public class Player : NetworkBehaviour
     private GameObject SpawnEffect;
     [SerializeField]
     private GameObject[] DisableGameObjectOnDeath;
-    public void Setup()
+
+    private bool FirstSetUp = true;
+    public void SetupPlayer()
     {
-        WasEnabled = new bool[DisableOnDeath.Length];
-        for (int i = 0; i < WasEnabled.Length; i++)
-        {//loop through components and store if they are enabled
-            WasEnabled[i] = DisableOnDeath[i].enabled;
+        if (isLocalPlayer)
+        {
+            GameManager.Instance.SetSceneCameraActive(false);
+            GetComponent<PlayerSetUp>().PlayerUIInstance.SetActive(true);
+        }
+        //switch camera
+        CmdBroadCastNewPlayerSetup();
+    }
+
+    [Command]
+    private void CmdBroadCastNewPlayerSetup()
+    {
+        RpcSetupPlayerOnAllClients();
+    }
+
+    [ClientRpc]
+    private void RpcSetupPlayerOnAllClients()
+    {
+        if (FirstSetUp)
+        {
+            WasEnabled = new bool[DisableOnDeath.Length];
+            for (int i = 0; i < WasEnabled.Length; i++)
+            {//loop through components and store if they are enabled
+                WasEnabled[i] = DisableOnDeath[i].enabled;
+            }
+            FirstSetUp = false;
         }
         SetDefaults();
     }
@@ -46,8 +70,13 @@ public class Player : NetworkBehaviour
         Transform _SpawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = _SpawnPoint.position;
         transform.rotation = _SpawnPoint.rotation;
+
         Debug.Log(transform.name + " Player respawn");
-        SetDefaults();
+
+        yield return new WaitForSeconds(0.1f);//delay a bit
+
+        SetupPlayer();
+        //SetDefaults();
     }
 
     public void SetDefaults()
@@ -68,26 +97,22 @@ public class Player : NetworkBehaviour
         {
             _Col.enabled = true;
         }
-        if (isLocalPlayer)
-        {
-            GameManager.Instance.SetSceneCameraActive(false);
-            GetComponent<PlayerSetUp>().PlayerUIInstance.SetActive(true);
-        }
+        
         //create spawn Effect GameObject 
         GameObject _GraphicsIns = Instantiate(SpawnEffect, transform.position, Quaternion.identity);
         Destroy(_GraphicsIns, 3f);
     }
-    private void Update()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.K))//k for kill, for debuging
-        {
-           RpcTakeDamage(999);
-       }
-    }
+    //private void Update()
+    //{
+    //    if (!isLocalPlayer)
+    //    {
+    //        return;
+    //    }
+    //   // if (Input.GetKeyDown(KeyCode.K))//k for kill, for debuging
+    //   // {
+    //   //    RpcTakeDamage(999);
+    //   //}
+    //}
 
     [ClientRpc]
     public void RpcTakeDamage(int _DamageAmount)

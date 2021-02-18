@@ -48,13 +48,14 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
                 Debug.LogError("No player UI found");
             }
             UI.SetController(GetComponent<PlayerController>());
+
+            //player class set up
+            GetComponent<Player>().SetupPlayer();
         }
 
 
         //RegisterPlayer(); game manager takes care of it
 
-        //player class set up
-        GetComponent<Player>().Setup();
    
     }
     void SetLayerRecursively(GameObject Obj, int NewLayer)
@@ -89,8 +90,12 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
     {
         //Destroy PlayerUI
         Destroy(PlayerUIInstance);
-        //instance?
-        GameManager.Instance.SetSceneCameraActive(true);
+
+        if (isLocalPlayer)
+        {
+            //instance?
+            GameManager.Instance.SetSceneCameraActive(true);
+        }
 
         //deregisger player when die are killed / or disconnect?
         GameManager.UnRegisterPlayer(transform.name);
