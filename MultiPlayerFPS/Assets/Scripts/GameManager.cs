@@ -7,6 +7,22 @@ public class GameManager : MonoBehaviour
 
     public MatchSettings ThisMatchSettings;
 
+    [SerializeField]
+    private GameObject SceneCamera;
+
+    public void SetSceneCameraActive(bool isActive)
+    {
+        //SceneCamera = Camera.main;
+        if(SceneCamera == null)
+        {
+            return;
+        }
+        SceneCamera.SetActive(isActive);
+        //SceneCamera.gameObject.SetActive(true);
+        
+        
+    }
+
     private void Awake()
     {
         if(Instance != null)

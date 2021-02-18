@@ -438,6 +438,7 @@ MonoBehaviour:
   DontDrawLayerName: DontDraw
   PlayerGraphics: {fileID: 1318264769778669033}
   PlayerUIPrefab: {fileID: 4494772795052158283, guid: f27a96f06298608459ae5a4d488485f4, type: 3}
+  PlayerUIInstance: {fileID: 0}
 --- !u!114 &6856340179448102912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +611,11 @@ MonoBehaviour:
   - {fileID: 1318264770072073747}
   - {fileID: 4337954152429038035}
   WasEnabled: 
+  DeadEffect: {fileID: 2856792398987374119, guid: b2eb360a8185fba4cb938d45e2af9491, type: 3}
+  SpawnEffect: {fileID: 7806740754536659452, guid: 4cfdcedbcf1855d4d8403e1b9c87bf1e, type: 3}
+  DisableGameObjectOnDeath:
+  - {fileID: 1318264768906664362}
+  - {fileID: 1318264769778669033}
 --- !u!114 &7608246375965524362
 MonoBehaviour:
   m_ObjectHideFlags: 0

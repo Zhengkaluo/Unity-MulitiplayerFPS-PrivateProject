@@ -19,9 +19,10 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
 
     [SerializeField]
     GameObject PlayerUIPrefab;
-    private GameObject PlayerUIInstance;
+    [HideInInspector]
+    public GameObject PlayerUIInstance;
 
-    Camera SceneCamera;
+    //Camera SceneCamera;
     void Start()
     {
         //if this object are the local player
@@ -32,11 +33,7 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
         //disable scene camera
         else
         {
-            SceneCamera = Camera.main;
-            if(SceneCamera != null)
-            {
-                SceneCamera.gameObject.SetActive(false);
-            }
+            
             //Disable Player Graphics For Local Player so not blocking camera
             SetLayerRecursively(PlayerGraphics, LayerMask.NameToLayer(DontDrawLayerName));
 
@@ -92,11 +89,8 @@ public class PlayerSetUp : NetworkBehaviour //No monobehaviour
     {
         //Destroy PlayerUI
         Destroy(PlayerUIInstance);
-        //when this object die, set back scene camear back
-        if(SceneCamera != null)
-        {
-            SceneCamera.gameObject.SetActive(true);
-        }
+        //instance?
+        GameManager.Instance.SetSceneCameraActive(true);
 
         //deregisger player when die are killed / or disconnect?
         GameManager.UnRegisterPlayer(transform.name);
